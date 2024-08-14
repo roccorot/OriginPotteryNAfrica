@@ -1,0 +1,15 @@
+library(here)
+load(here('results_images','binom','results_binom_m1.RData'))
+load(here('results_images','binom','results_binom_m2.RData'))
+load(here('results_images','binom','results_binom_m3.RData'))
+load(here('results_images','binom','results_binom_m4.RData'))
+load(here('results_images','binom','results_binom_m5.RData'))
+load(here('results_images','binom','results_binom_m6.RData'))
+load(here('results_images','binom','results_binom_m7.RData'))
+res <- data.frame(models=paste0('m',1:7),origins=c('e','a','o','e+a','e+o','a+o','e+a+o'))
+res$waic <- c(m1.res$waic$WAIC,m2.res$waic$WAIC,m3.res$waic$WAIC,m4.res$waic$WAIC,m5.res$waic$WAIC,m6.res$waic$WAIC,m7.res$waic$WAIC)
+res$delta.waic <- round(res$waic - min(res$waic),3)
+res$weights <- round(exp(-0.5*res$delta.waic)/sum(exp(-0.5*res$delta.waic)),3)
+res <- res[order(res$waic,decreasing=F),]
+write.csv(res,here('tables','main','table_model_comparison.csv'),row.names=F)
+
