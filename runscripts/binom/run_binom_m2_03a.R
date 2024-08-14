@@ -13,12 +13,13 @@ thin = 25
 
 # Run MCMC ----
 this_cluster <- makeCluster(4)
-chain_output.m2.c  <- parLapply(cl=this_cluster,X=1:4,fun=runMCMC_spatialDiffusion.1,dat=dat,inits=inits.singleorigin,code=spatialDiffusion.singleorigin,constants=constants,niter=niter,nburnin=nburnin,thin=thin)
+chain_output.m2  <- parLapply(cl=this_cluster,X=1:4,fun=runMCMC_spatialDiffusion.1,dat=dat,inits=inits.singleorigin,code=spatialDiffusion.singleorigin,constants=constants,niter=niter,nburnin=nburnin,thin=thin)
 stopCluster(this_cluster)
 
 # Run Diagnostics ----
 (rhat.m2 <- coda::gelman.diag(chain_output.m2))
 if (any(rhat.m2[[1]][,1]>1.01)) {rhat.m2[[1]][which(rhat.m2[[1]][,1]>1.01),1]}
+if (any(rhat.m2[[1]][1:3,1]>1.01)) {rhat.m2[[1]][which(rhat.m2[[1]][1:3,1]>1.01),1]}
 
 
 m2 <- nimbleModel(code = spatialDiffusion.singleorigin, data=dat, constants=constants)

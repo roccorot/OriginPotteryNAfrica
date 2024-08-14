@@ -20,6 +20,7 @@ stopCluster(this_cluster)
 # Run Diagnostics ----
 (rhat.m6 <- coda::gelman.diag(chain_output.m6))
 if (any(rhat.m6[[1]][,1]>1.01)) {rhat.m6[[1]][which(rhat.m6[[1]][,1]>1.01),1]}
+if (any(rhat.m6[[1]][1:6,1]>1.01)) {rhat.m6[[1]][which(rhat.m6[[1]][1:6,1]>1.01),1]}
 
 
 m6 <- nimbleModel(code = spatialDiffusion.dualorigin, data=dat, constants=constants)

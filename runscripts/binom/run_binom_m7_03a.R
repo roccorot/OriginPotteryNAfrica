@@ -21,6 +21,7 @@ stopCluster(this_cluster)
 # Run Diagnostics ----
 (rhat.m7 <- coda::gelman.diag(chain_output.m7))
 if (any(rhat.m7[[1]][,1]>1.01)) {rhat.m7[[1]][which(rhat.m7[[1]][,1]>1.01),1]}
+if (any(rhat.m7[[1]][1:9,1]>1.01)) {rhat.m7[[1]][which(rhat.m7[[1]][1:9,1]>1.01),1]} #Check Rhat for Key-parameters
 
 
 m7 <- nimbleModel(code = spatialDiffusion.tripleorigin, data=dat, constants=constants)
