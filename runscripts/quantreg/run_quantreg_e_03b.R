@@ -5,7 +5,7 @@ library(here)
 library(coda)
 library(parallel)
 
-load(here('runscripts','readyrun_quantreg.RData'))
+load(here('runscripts','quantreg','readyrun_quantreg.RData'))
 load(here('data','input_quantreg.RData'))
 
 # Define Parameters ----
