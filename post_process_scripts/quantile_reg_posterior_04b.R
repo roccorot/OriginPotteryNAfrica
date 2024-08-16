@@ -1,0 +1,48 @@
+# Load Libraries,Data, and Results ----
+library(here)
+library(coda)
+library(bayesplot)
+
+load(here('data','input_binom.RData'))
+load(here('results_images','quantreg','results_quantreg_a.RData'))
+load(here('results_images','quantreg','results_quantreg_e.RData'))
+load(here('results_images','quantreg','results_quantreg_o.RData'))
+
+# Compute predictions and posterior summary statistics ----
+dd <- seq(1,4000000,1000)
+mat.a <- sapply(1:nrow(res.quant.a$post),function(x,post,dd){post[x,1]+post[x,2]*dd},post=res.quant.a$post,dd=dd)
+mat.o <- sapply(1:nrow(res.quant.o$post),function(x,post,dd){post[x,1]+post[x,2]*dd},post=res.quant.o$post,dd=dd)
+mat.e <- sapply(1:nrow(res.quant.e$post),function(x,post,dd){post[x,1]+post[x,2]*dd},post=res.quant.e$post,dd=dd)
+mean.a <- apply(mat.a,1,mean)
+mean.o <- apply(mat.o,1,mean)
+mean.e <- apply(mat.e,1,mean)
+hpdi.a <- apply(mat.a,1,function(x){as.numeric(HPDinterval(mcmc(x)))})
+hpdi.o <- apply(mat.o,1,function(x){as.numeric(HPDinterval(mcmc(x)))})
+hpdi.e <- apply(mat.e,1,function(x){as.numeric(HPDinterval(mcmc(x)))})
+
+# Generate posterior figure on data ----
+pdf(here('figures','si','quantile_regression.pdf'),height=8,width=7)
+par(mfrow=c(3,1),mar=c(5,4,2,1),lend=2)
+plot(d$dist.o/1000,d$medcal,ylim=c(12000,6000),pch=20,col=ifelse(d$pottery_bin==0,'lightgrey','black'),xlab='Distance from Ounjougo Ravin de la Mouch (km)',ylab='Median Calibrated BP',xlim=c(0,4000))
+polygon(c(dd,rev(dd)),c(hpdi.o[1,],rev(hpdi.o[2,])),border=NA,col=adjustcolor('indianred',0.3))
+lines(dd,mean.o,lwd=1.5,col='indianred')
+plot(d$dist.a/1000,d$medcal,ylim=c(12000,6000),pch=20,col=ifelse(d$pottery_bin==0,'lightgrey','black'),xlab='Distance from Adrar Bous (km)',ylab='Median Calibrated BP',xlim=c(0,4000))
+polygon(c(dd,rev(dd)),c(hpdi.a[1,],rev(hpdi.a[2,])),border=NA,col=adjustcolor('indianred',0.3))
+lines(dd,mean.a,lwd=1.5,col='indianred')
+legend('topright',legend=c('With Ceramic','Witout Ceramic','Posterior Mean','90% HPDI','Zero-Slope'),pch=c(20,20,NA,NA),col=c('lightgrey','black','indianred',adjustcolor('indianred',0.3)),lwd=c(NA,NA,1.5,5,1),lty=c(NA,NA,1,1,2),cex=1.4,bty='n')
+plot(d$dist.e/1000,d$medcal,ylim=c(12000,6000),pch=20,col=ifelse(d$pottery_bin==0,'lightgrey','black'),xlab='Distance from Bir Kiseiba (km)',ylab='Median Calibrated BP',xlim=c(0,4000))
+polygon(c(dd,rev(dd)),c(hpdi.e[1,],rev(hpdi.e[2,])),border=NA,col=adjustcolor('indianred',0.3))
+lines(dd,mean.e,lwd=1.5,col='indianred')
+dev.off()
+
+summary.posterior  <- data.frame(Origin=c('Bir Kiseiba','Adrar Bous','Onjoungo Ravin de la Mouch'))
+summary.posterior$Gamma0.mean <- c(paste0(round(mean(res.quant.e$post[,1])),' BP'),paste0(round(mean(res.quant.a$post[,1])),' BP'),paste0(round(mean(res.quant.o$post[,1])),' BP'))
+summary.posterior$Gamma0.hpdi <- c(paste0(round(as.numeric(HPDinterval(mcmc(res.quant.e$post[,1])))),collapse=' ~ '),paste0(round(as.numeric(HPDinterval(mcmc(res.quant.a$post[,1])))),collapse=' ~ '),paste0(round(as.numeric(HPDinterval(mcmc(res.quant.o$post[,1])))),collapse=' ~ '))
+summary.posterior$Gamma0.rhat <- round(c(res.quant.e$rhat[[1]][1,1],res.quant.a$rhat[[1]][1,1],res.quant.o$rhat[[1]][1,1]),3)
+summary.posterior$Gamma0.ess <- round(c(res.quant.e$ess[1],res.quant.a$ess[1],res.quant.o$ess[1]))
+summary.posterior$Gamma1.mean <- c(mean(res.quant.e$post[,2]),mean(res.quant.a$post[,2]),mean(res.quant.o$post[,2]))
+summary.posterior$Gamma1.hpdi <- c(paste0(round(as.numeric(HPDinterval(mcmc(res.quant.e$post[,2]))),7),collapse=' ~ '),paste0(round(as.numeric(HPDinterval(mcmc(res.quant.a$post[,2]))),7),collapse=' ~ '),paste0(round(as.numeric(HPDinterval(mcmc(res.quant.o$post[,2]))),7),collapse=' ~ '))
+summary.posterior$Gamma1.rhat <- round(c(res.quant.e$rhat[[1]][2,1],res.quant.a$rhat[[1]][2,1],res.quant.o$rhat[[1]][2,1]),3)
+summary.posterior$Gamma1.ess <- round(c(res.quant.e$ess[2],res.quant.a$ess[2],res.quant.o$ess[2]))
+
+write.csv(summary.posterior,file=here('tables','si','quantile_regression_posterior.csv'))

@@ -27,7 +27,7 @@ if (any(rhat.quant.a[[1]][,1]>1.01)) {rhat.quant.a[[1]][which(rhat.quant.a[[1]][
 samples.quant.a  <- do.call(rbind,chain_output.quant.a)
 (HPDinterval(mcmc(samples.quant.a[,'beta'])))
 res.quant.a <- list()
-res.quant.a$post <- samples.quant.a[,!grep('theta',colnames(samples.quant.a))]
+res.quant.a$post <- samples.quant.a[,!grepl('theta',colnames(samples.quant.a))]
 res.quant.a$rhat <- rhat.quant.a
 res.quant.a$ess <- effectiveSize(chain_output.quant.a)
 save(res.quant.a,file=here('results_images','quantreg','results_quantreg_a.RData'))
