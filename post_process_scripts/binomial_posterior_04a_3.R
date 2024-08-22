@@ -2,7 +2,7 @@ library(here)
 library(coda)
 library(ggplot2)
 library(patchwork)
-library(purr)
+library(purrr)
 
 logistic  <- function(x){p <- 1/(1+exp(-x))}
 
