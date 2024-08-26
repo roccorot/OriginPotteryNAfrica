@@ -66,12 +66,12 @@ Model | R Script | Requires | Generates | Description | Runtime |
 | `figures/main/maps.pdf` | Fig.1 |
 | `figures/main/pred_m5b.pdf` | Fig.2 |
 | `figures/main/pred_m7b.pdf` | Fig.3 |
-| `figures/si/quantile_regression.pdf | Fig.S1 |
-| `figures/si/pred_m1b.pdf | Fig.S2 |
-| `figures/si/pred_m2b.pdf | Fig.S3 |
-| `figures/si/pred_m3b.pdf | Fig.S4 |
-| `figures/si/pred_m4b.pdf | Fig.S5 |
-| `figures/si/pred_m6b.pdf | Fig.S6 |
+| `figures/si/quantile_regression.pdf` | Fig.S1 |
+| `figures/si/pred_m1b.pdf` | Fig.S2 |
+| `figures/si/pred_m2b.pdf` | Fig.S3 |
+| `figures/si/pred_m3b.pdf` | Fig.S4 |
+| `figures/si/pred_m4b.pdf` | Fig.S5 |
+| `figures/si/pred_m6b.pdf` | Fig.S6 |
 | `figures/si/marginal_predictions.pdf` | Fig.S7 |
 | `figures/si/residuals_lisa_m5_m7_9k_7k.pdf` | Fig.S8 |
 | `tables/main/table_model_comparison.csv` | Table 1 |
