@@ -52,28 +52,31 @@ for(i in 1:3)
 	sites[[i]]$pval.m7 <- ifelse(Gi.m7.8k$p_folded_sim<=0.05,'<.05','>.05')
 	ggm5[[i]] <- ggplot() +
 		geom_sf(data=background) +
-		geom_sf(data = sites[[i]],aes(color=cluster.m5,shape=pval.m5),size=3) +
+		geom_sf(data = sites[[i]],aes(color=cluster.m5,shape=pval.m5),size=1.5) +
 		scale_fill_manual(values=c('high'='red','low'='blue'))+
 		scale_shape_manual(values=c('<.05'=19,'>.05'=21),drop=F,limits=c('<.05','>.05'))+
 		xlim(-17.5,40.5) +
 		ylim(7.5,34.5) +
 		labs(title=paste0('m5/',time.slices[[i]],'BP'),color='Gi-cluster',shape='P-value',x='Longitude',y='Latitude')+
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
 
 	ggm7[[i]] <- ggplot() +
 		geom_sf(data=background) +
-		geom_sf(data = sites[[i]],aes(color=cluster.m7,shape=pval.m7),size=3) +
+		geom_sf(data = sites[[i]],aes(color=cluster.m7,shape=pval.m7),size=1.5) +
 		scale_fill_manual(values=c('high'='red','low'='blue'))+
 		scale_shape_manual(values=c('<.05'=19,'>.05'=21),drop=F,limits=c('<.05','>.05'))+
 		xlim(-17.5,40.5) +
 		ylim(7.5,34.5) +
 		labs(title=paste0('m7/',time.slices[[i]],'BP'),color='Gi-cluster',shape='P-value',x='Longitude',y='Latitude')+
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
+
 }
 
 combined <- ggm5[[1]]+ggm5[[2]]+ggm5[[3]]+ggm7[[1]]+ggm7[[2]]+ggm7[[3]] & theme(legend.position="bottom")
 
 
-pdf(here('figures','si','residuals_lisa_m5_m7_9k_7k.pdf'),width=10,height=8)
+pdf(here('figures','si','residuals_lisa_m5_m7_9k_7k.pdf'),width=7.25,height=4.2)
 combined+plot_layout(guides='collect',ncol=3)
 dev.off()

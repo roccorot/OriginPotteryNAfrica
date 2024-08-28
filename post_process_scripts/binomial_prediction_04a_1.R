@@ -129,7 +129,8 @@ for(i in 1:length(time.slices))
 		ylim(7.5,34.5) +
 		scale_shape_manual(limits=c('0','1'),values=c('0'=1,'1'=19),labels=c('1'='Present','0'='Absent'),drop=F,guide = guide_legend(override.aes=list(shape=c(1,19)))) +
 		labs(title = paste0('BP ',time.slices[i]), x = "Longitude",   y = "Latitude", shape='Pottery',fill='Probability') +
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
 
 	ggplots.m2[[i]] <- ggplot() +
 		geom_sf(data = background) +
@@ -142,7 +143,8 @@ for(i in 1:length(time.slices))
 		ylim(7.5,34.5) +
 		scale_shape_manual(limits=c('0','1'),values=c('0'=1,'1'=19),labels=c('1'='Present','0'='Absent'),drop=F,guide = guide_legend(override.aes=list(shape=c(1,19)))) +
 		labs(title = paste0('BP ',time.slices[i]), x = "Longitude",   y = "Latitude", shape='Pottery',fill='Probability') +
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
 
 	ggplots.m3[[i]] <- ggplot() +
 		geom_sf(data = background) +
@@ -155,7 +157,9 @@ for(i in 1:length(time.slices))
 		ylim(7.5,34.5) +
 		scale_shape_manual(limits=c('0','1'),values=c('0'=1,'1'=19),labels=c('1'='Present','0'='Absent'),drop=F,guide = guide_legend(override.aes=list(shape=c(1,19)))) +
 		labs(title = paste0('BP ',time.slices[i]), x = "Longitude",   y = "Latitude", shape='Pottery',fill='Probability') +
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
+
 
 	ggplots.m4[[i]] <- ggplot() +
 		geom_sf(data = background) +
@@ -168,7 +172,8 @@ for(i in 1:length(time.slices))
 		ylim(7.5,34.5) +
 		scale_shape_manual(limits=c('0','1'),values=c('0'=1,'1'=19),labels=c('1'='Present','0'='Absent'),drop=F,guide = guide_legend(override.aes=list(shape=c(1,19)))) +
 		labs(title = paste0('BP ',time.slices[i]), x = "Longitude",   y = "Latitude", shape='Pottery',fill='Probability') +
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
 
 	ggplots.m5[[i]] <- ggplot() +
 		geom_sf(data = background) +
@@ -181,7 +186,8 @@ for(i in 1:length(time.slices))
 		ylim(7.5,34.5) +
 		scale_shape_manual(limits=c('0','1'),values=c('0'=1,'1'=19),labels=c('1'='Present','0'='Absent'),drop=F,guide = guide_legend(override.aes=list(shape=c(1,19)))) +
 		labs(title = paste0('BP ',time.slices[i]), x = "Longitude",   y = "Latitude", shape='Pottery',fill='Probability') +
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
 
 	ggplots.m6[[i]] <- ggplot() +
 		geom_sf(data = background) +
@@ -194,7 +200,8 @@ for(i in 1:length(time.slices))
 		ylim(7.5,34.5) +
 		scale_shape_manual(limits=c('0','1'),values=c('0'=1,'1'=19),labels=c('1'='Present','0'='Absent'),drop=F,guide = guide_legend(override.aes=list(shape=c(1,19)))) +
 		labs(title = paste0('BP ',time.slices[i]), x = "Longitude",   y = "Latitude", shape='Pottery',fill='Probability') +
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
 
 	ggplots.m7[[i]] <- ggplot() +
 		geom_sf(data = background) +
@@ -207,7 +214,8 @@ for(i in 1:length(time.slices))
 		ylim(7.5,34.5) +
 		scale_shape_manual(limits=c('0','1'),values=c('0'=1,'1'=19),labels=c('1'='Present','0'='Absent'),drop=F,guide = guide_legend(override.aes=list(shape=c(1,19)))) +
 		labs(title = paste0('BP ',time.slices[i]), x = "Longitude",   y = "Latitude", shape='Pottery',fill='Probability') +
-		theme_minimal()
+		theme_minimal() +
+		theme(plot.title = element_text(size=9), axis.title = element_text(size=8), axis.text = element_text(size=8))
 }
 
 combined.m1 <- ggplots.m1[[1]] + ggplots.m1[[2]] + ggplots.m1[[3]] + ggplots.m1[[4]] + ggplots.m1[[5]] + ggplots.m1[[6]] & theme(legend.position = "bottom")
@@ -218,30 +226,31 @@ combined.m5 <- ggplots.m5[[1]] + ggplots.m5[[2]] + ggplots.m5[[3]] + ggplots.m5[
 combined.m6 <- ggplots.m6[[1]] + ggplots.m6[[2]] + ggplots.m6[[3]] + ggplots.m6[[4]] + ggplots.m6[[5]] + ggplots.m6[[6]] & theme(legend.position = "bottom")
 combined.m7 <- ggplots.m7[[1]] + ggplots.m7[[2]] + ggplots.m7[[3]] + ggplots.m7[[4]] + ggplots.m7[[5]] + ggplots.m7[[6]] & theme(legend.position = "bottom")
 
-pdf(here('figures','si','pred_m1b.pdf'),width=10,height=8)
+# pdf(here('figures','si','pred_m1b.pdf'),width=10,height=8)
+pdf(here('figures','si','pred_m1b.pdf'),width=7.25,height=4.2)
 combined.m1 + plot_layout(guides = "collect",ncol=3)
 dev.off()
 
-pdf(here('figures','si','pred_m2b.pdf'),width=10,height=8)
+pdf(here('figures','si','pred_m2b.pdf'),width=7.25,height=4.2)
 combined.m2 + plot_layout(guides = "collect",ncol=3)
 dev.off()
 
-pdf(here('figures','si','pred_m3b.pdf'),width=10,height=8)
+pdf(here('figures','si','pred_m3b.pdf'),width=7.25,height=4.2)
 combined.m3 + plot_layout(guides = "collect",ncol=3)
 dev.off()
 
-pdf(here('figures','si','pred_m4b.pdf'),width=10,height=8)
+pdf(here('figures','si','pred_m4b.pdf'),width=7.25,height=4.2)
 combined.m4 + plot_layout(guides = "collect",ncol=3)
 dev.off()
 
-pdf(here('figures','main','pred_m5b.pdf'),width=10,height=8)
+pdf(here('figures','main','pred_m5b.pdf'),width=7.25,height=4.2)
 combined.m5 + plot_layout(guides = "collect",ncol=3)
 dev.off()
 
-pdf(here('figures','si','pred_m6b.pdf'),width=10,height=8)
+pdf(here('figures','si','pred_m6b.pdf'),width=7.25,height=4.2)
 combined.m6 + plot_layout(guides = "collect",ncol=3)
 dev.off()
 
-pdf(here('figures','main','pred_m7b.pdf'),width=10,height=8)
+pdf(here('figures','main','pred_m7b.pdf'),width=7.25,height=4.2)
 combined.m7 + plot_layout(guides = "collect",ncol=3)
 dev.off()
