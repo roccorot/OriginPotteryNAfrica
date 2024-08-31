@@ -3,6 +3,7 @@ library(coda)
 library(ggplot2)
 library(patchwork)
 library(purrr)
+library(viridis)
 
 logistic  <- function(x){p <- 1/(1+exp(-x))}
 
@@ -137,15 +138,31 @@ post.summary$param <- c('beta.e.0','beta.e.time','beta.e.distance',
 			'beta.a.0','beta.a.time','beta.a.distance','beta.o.0','beta.o.time','beta.o.distance',
 			'beta.e.0','beta.e.time','beta.e.distance','beta.a.0','beta.a.time','beta.a.distance','beta.o.0','beta.o.time','beta.o.distance')
 
-posts <- cbind(m1.res$post,m2.res$post,m3.res$post,m4.res$post,m5.res$post,m6.res$post,m7.res$post)
-signs <- rep(c(1,-1,-1),12)
-sign.matrix <- matrix(rep(signs,each=nrow(posts)),nrow=nrow(posts),byrow=FALSE)
-posts <- sign.matrix*posts
-rhats <- list(m1.res$rhat,m2.res$rhat,m3.res$rhat,m4.res$rhat,m5.res$rhat,m6.res$rhat,m7.res$rhat)
-esss <- list(m1.res$ess,m2.res$ess,m3.res$ess,m4.res$ess,m5.res$ess,m6.res$ess,m7.res$ess)
+posts <- cbind(m1.res$post,
+	       m2.res$post,
+	       m3.res$post,
+	       m4.res$post[,c(1,3,5,2,4,6)],
+	       m5.res$post[,c(1,3,5,2,4,6)],
+	       m6.res$post[,c(1,3,5,2,4,6)],
+	       m7.res$post[,c(1,4,7,2,5,8,3,6,9)])
+rhats <- c(m1.res$rhat[[1]][1:3,1],
+	   m2.res$rhat[[1]][1:3,1],
+	   m3.res$rhat[[1]][1:3,1],
+	   m4.res$rhat[[1]][c(1,3,5,2,4,6),1],
+	   m5.res$rhat[[1]][c(1,3,5,2,4,6),1],
+	   m6.res$rhat[[1]][c(1,3,5,2,4,6),1],
+	   m6.res$rhat[[1]][c(1,4,7,2,5,8,3,6,9),1])
+
+ess <- c(m1.res$ess[1:3],
+	  m2.res$ess[1:3],
+	  m3.res$ess[1:3],
+	  m4.res$ess[c(1,3,5,2,4,6)],
+	  m5.res$ess[c(1,3,5,2,4,6)],
+	  m6.res$ess[c(1,3,5,2,4,6)],
+	  m7.res$ess[c(1,4,7,2,5,8,3,6,9)])
+
 post.summary$ess <- post.summary$rhat  <- post.summary$hpdi  <- post.summary$mean <- NA
 param.numbers <- c(3,3,3,6,6,6,9)
-signs <- rep(c(1,-1,-1),13)
 model.numbers <- 1:7
 current.index <- 1
 
@@ -155,8 +172,8 @@ for (i in model.numbers)
 	current.index <- max(fill.index) + 1
 	post.summary$mean[fill.index] <- round(apply(posts[,fill.index],2,mean),5)
 	post.summary$hpdi[fill.index] <- apply(posts[,fill.index],2,function(x){paste0(round(as.numeric(HPDinterval(mcmc(x))),5),collapse=' ~ ')})
-	post.summary$rhat[fill.index] <- round(rhats[[i]][[1]][1:param.numbers[i],1],3)
-	post.summary$ess[fill.index] <- round(esss[[i]][1:param.numbers[i]])
+	post.summary$rhat[fill.index] <- round(rhats[fill.index],4)
+	post.summary$ess[fill.index] <- round(ess[fill.index])
 }
 
 write.csv(post.summary,file=here('tables','si','binomial_posterior.csv'))
