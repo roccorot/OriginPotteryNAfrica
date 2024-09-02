@@ -163,7 +163,7 @@ for(i in 1:length(time.slices))
 
 	ggplots.m4[[i]] <- ggplot() +
 		geom_sf(data = background) +
-		geom_raster(data = results[[i]], aes(x = x, y = y, fill = m3)) +
+		geom_raster(data = results[[i]], aes(x = x, y = y, fill = m4)) +
 		geom_sf(data = sites[[i]], aes(shape = factor(pottery_bin)),show.legend=FALSE) +
 		geom_point(data = legend_data, aes(x = x, y = y, shape = presence), size = 3, show.legend = TRUE) +  # Add dummy points for legend
 		geom_sf(data = background,fill=NA) +
@@ -177,7 +177,7 @@ for(i in 1:length(time.slices))
 
 	ggplots.m5[[i]] <- ggplot() +
 		geom_sf(data = background) +
-		geom_raster(data = results[[i]], aes(x = x, y = y, fill = m3)) +
+		geom_raster(data = results[[i]], aes(x = x, y = y, fill = m5)) +
 		geom_sf(data = sites[[i]], aes(shape = factor(pottery_bin)),show.legend=FALSE) +
 		geom_point(data = legend_data, aes(x = x, y = y, shape = presence), size = 3, show.legend = TRUE) +  # Add dummy points for legend
 		geom_sf(data = background,fill=NA) +
@@ -191,7 +191,7 @@ for(i in 1:length(time.slices))
 
 	ggplots.m6[[i]] <- ggplot() +
 		geom_sf(data = background) +
-		geom_raster(data = results[[i]], aes(x = x, y = y, fill = m3)) +
+		geom_raster(data = results[[i]], aes(x = x, y = y, fill = m6)) +
 		geom_sf(data = sites[[i]], aes(shape = factor(pottery_bin)),show.legend=FALSE) +
 		geom_point(data = legend_data, aes(x = x, y = y, shape = presence), size = 3, show.legend = TRUE) +  # Add dummy points for legend
 		geom_sf(data = background,fill=NA) +

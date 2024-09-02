@@ -107,7 +107,7 @@ for (i in 1:7)
 			}
 			model.slots[[i]][[j]]  <- ggplot() + 
 				geom_tile(data=tmp,aes(x=x.unscaled,y=y.unscaled,fill=p)) +
-				scale_fill_viridis(option='H',limits=c(0,1)) +
+				scale_fill_viridis(limits=c(0,1)) +
 				labs(title = paste0(model.names[i],'/',origins[j]),x='Distance from Origin (km)',y='Cal BP') +
 				scale_y_reverse() +
 				theme(legend.position='bottom') +
