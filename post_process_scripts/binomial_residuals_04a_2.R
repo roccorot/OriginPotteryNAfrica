@@ -47,24 +47,26 @@ for(i in 1:3)
 	Gi.m5.8k = local_g_perm(sites[[i]]$residuals.m5, nb, wt, nsim = 999)
 	Gi.m7.8k = local_g_perm(sites[[i]]$residuals.m7, nb, wt, nsim = 999)
 	sites[[i]]$cluster.m5 <- Gi.m5.8k$cluster
+	sites[[i]]$cluster.m5 <- relevel(sites[[i]]$cluster.m5,'High')
 	sites[[i]]$pval.m5 <- ifelse(Gi.m5.8k$p_folded_sim<=0.05,'<.05','>.05')
 	sites[[i]]$cluster.m7 <- Gi.m7.8k$cluster
+	sites[[i]]$cluster.m7 <- relevel(sites[[i]]$cluster.m7,'High')
 	sites[[i]]$pval.m7 <- ifelse(Gi.m7.8k$p_folded_sim<=0.05,'<.05','>.05')
 	ggm5[[i]] <- ggplot() +
 		geom_sf(data=background) +
 		geom_sf(data = sites[[i]],aes(color=cluster.m5,shape=pval.m5),size=1.5) +
-		scale_fill_manual(values=c('high'='red','low'='blue'))+
+		scale_fill_manual(values=c('High'='red','Low'='blue'))+
 		scale_shape_manual(values=c('<.05'=19,'>.05'=21),drop=F,limits=c('<.05','>.05'))+
 		xlim(-17.5,40.5) +
 		ylim(7.5,34.5) +
-		labs(title=paste0('m5/',time.slices[[i]],'BP'),color='Gi-cluster',shape='P-value',x='Longitude',y='Latitude')+
+		labs(title=paste0('m5/',time.slices[[i]],'BP'),fill='Gi-cluster',shape='P-value',x='Longitude',y='Latitude')+
 		theme_minimal() +
 		theme(plot.title = element_text(size=9), axis.title = element_text(size=8),axis.text = element_text(size=8))
 
 	ggm7[[i]] <- ggplot() +
 		geom_sf(data=background) +
 		geom_sf(data = sites[[i]],aes(color=cluster.m7,shape=pval.m7),size=1.5) +
-		scale_fill_manual(values=c('high'='red','low'='blue'))+
+		scale_fill_manual(values=c('High'='red','Low'='blue'))+
 		scale_shape_manual(values=c('<.05'=19,'>.05'=21),drop=F,limits=c('<.05','>.05'))+
 		xlim(-17.5,40.5) +
 		ylim(7.5,34.5) +
