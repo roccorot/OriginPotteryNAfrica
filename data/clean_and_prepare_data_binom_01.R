@@ -11,7 +11,7 @@ d <- read.csv(here('data','c14data.csv'))
 dcal <- calibrate(d$Yrs.BP,d$STD) #calibrate
 d$medcal <- medCal(dcal) #store median calibrated date
 d$theta <- d$medcal #define initialisation of theta
-d$SiteID  <- as.numeric(as.factor(d$Sitename)) #assign unique SiteID as integer
+d$SiteID  <- as.numeric(as.factor(d$Site_code)) #assign unique SiteID as integer
 d$bin <- binPrep(sites=d$SiteID,ages=dcal,h=100)  #binning with 100yrs interval
 bin.table <- aggregate(pottery~bin,max,data=d) |> setNames(c('bin','pottery_bin')) #aggegate pottery presence/absence by bin
 thinned <- thinDates(ages=d$Yrs.BP,errors=d$STD,bins=d$bin,size=1,thresh=1,seed=123,method='splitsample') #random thinning
