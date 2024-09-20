@@ -10,9 +10,9 @@ load(here('data','input_quantreg.RData'))
 
 # Define Parameters ----
 constants$distance <- d$dist.e
-niter  <- 500000
-nburnin <- 250000
-thin <- 25
+niter  <- 100000
+nburnin <- 50000
+thin <- 5
 
 # Run MCMC ----
 this_cluster <- makeCluster(4)
