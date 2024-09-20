@@ -10,14 +10,19 @@ load(here('data','input_quantreg.RData'))
 
 # Define Parameters ----
 constants$distance <- d$dist.a
-niter  <- 500000
-nburnin <- 250000
-thin <- 25
+niter  <- 300000
+nburnin <- 150000
+thin <- 15
 
 # Run MCMC ----
-this_cluster <- makeCluster(4)
-chain_output.quant.a  <- parLapply(cl=this_cluster,X=1:4,fun=runMCMCquantreg,dat=dat,inits=inits,code=quantreg,constants=constants,niter=niter,nburnin=nburnin,thin=thin)
-stopCluster(this_cluster)
+# this_cluster <- makeCluster(4)
+# chain_output.quant.a  <- parLapply(cl=this_cluster,X=1:4,fun=runMCMCquantreg,dat=dat,inits=inits,code=quantreg,constants=constants,niter=niter,nburnin=nburnin,thin=thin)
+# stopCluster(this_cluster)
+out.1 <- runMCMCquantreg(seed=1,dat=dat,code=quantreg,constants=constants,inits=inits,niter=niter,nburnin=nburnin,thin=thin)
+out.2 <- runMCMCquantreg(seed=2,dat=dat,code=quantreg,constants=constants,inits=inits,niter=niter,nburnin=nburnin,thin=thin)
+out.3 <- runMCMCquantreg(seed=3,dat=dat,code=quantreg,constants=constants,inits=inits,niter=niter,nburnin=nburnin,thin=thin)
+out.4 <- runMCMCquantreg(seed=4,dat=dat,code=quantreg,constants=constants,inits=inits,niter=niter,nburnin=nburnin,thin=thin)
+chaint_output.quant.a <- list(out.1,out.2,out.3,out.4)
 
 # Run Diagnostics ----
 (rhat.quant.a <- gelman.diag(chain_output.quant.a))

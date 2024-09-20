@@ -79,6 +79,6 @@ for(i in 1:3)
 combined <- ggm5[[1]]+ggm5[[2]]+ggm5[[3]]+ggm7[[1]]+ggm7[[2]]+ggm7[[3]] & theme(legend.position="bottom")
 
 
-pdf(here('figures','si','residuals_lisa_m5_m7_9k_7k.pdf'),width=7.25,height=4.2)
+pdf(here('figures','main','residuals_lisa_m5_m7_9k_7k.pdf'),width=7.25,height=4.2)
 combined+plot_layout(guides='collect',ncol=3)
 dev.off()
