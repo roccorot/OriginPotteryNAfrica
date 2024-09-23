@@ -1,4 +1,7 @@
-"","Origin","Gamma0.mean","Gamma0.hpdi","Gamma0.rhat","Gamma0.ess","Gamma1.mean","Gamma1.hpdi","Gamma1.rhat","Gamma1.ess"
-"1","Bir Kiseiba","10175 BP","10041 ~ 10293",1,7218,7.93296556846184e-05,"2.5e-06 ~ 0.0001536",1,8137
-"2","Adrar Bous","10284 BP","10118 ~ 10460",1.001,3591,-1.25905031110773e-05,"-0.0001066 ~ 8e-05",1.001,3610
-"3","Onjoungo Ravin de la Mouch","10615 BP","10415 ~ 10814",1.001,2906,-0.000135507037580613,"-0.0002084 ~ -6.71e-05",1.001,2729
+"","Origin","parameters","post.mean","hpdi5","rhat","ess"
+"1","Bir Kiseiba","gamma0","10175 BP","10041 ~ 10293",1,7218
+"2","Bir Kiseiba","gamma1","0.0000793","0.0000025 ~ 0.0001536",1,8137
+"3","Adrar Bous","gamma0","10284 BP","10118 ~ 10460",1.001,3591
+"4","Adrar Bous","gamma1","-0.0000126","-0.0001066 ~ 0.00008",1.001,3610
+"5","Onjoungo Ravin de la Mouch","gamma0","10615 BP","10415 ~ 10814",1.001,2906
+"6","Onjoungo Ravin de la Mouch","gamma1","-0.0001355","-0.0002084 ~ -0.0000671",1.001,2729

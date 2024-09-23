@@ -34,14 +34,34 @@ polygon(c(dd,rev(dd)),c(hpdi.e[1,],rev(hpdi.e[2,])),border=NA,col=adjustcolor('i
 lines(dd,mean.e,lwd=1.5,col='indianred')
 dev.off()
 
-summary.posterior  <- data.frame(Origin=c('Bir Kiseiba','Adrar Bous','Onjoungo Ravin de la Mouch'))
-summary.posterior$Gamma0.mean <- c(paste0(round(mean(res.quant.e$post[,1])),' BP'),paste0(round(mean(res.quant.a$post[,1])),' BP'),paste0(round(mean(res.quant.o$post[,1])),' BP'))
-summary.posterior$Gamma0.hpdi <- c(paste0(round(as.numeric(HPDinterval(mcmc(res.quant.e$post[,1])))),collapse=' ~ '),paste0(round(as.numeric(HPDinterval(mcmc(res.quant.a$post[,1])))),collapse=' ~ '),paste0(round(as.numeric(HPDinterval(mcmc(res.quant.o$post[,1])))),collapse=' ~ '))
-summary.posterior$Gamma0.rhat <- round(c(res.quant.e$rhat[[1]][1,1],res.quant.a$rhat[[1]][1,1],res.quant.o$rhat[[1]][1,1]),3)
-summary.posterior$Gamma0.ess <- round(c(res.quant.e$ess[1],res.quant.a$ess[1],res.quant.o$ess[1]))
-summary.posterior$Gamma1.mean <- c(mean(res.quant.e$post[,2]),mean(res.quant.a$post[,2]),mean(res.quant.o$post[,2]))
-summary.posterior$Gamma1.hpdi <- c(paste0(round(as.numeric(HPDinterval(mcmc(res.quant.e$post[,2]))),7),collapse=' ~ '),paste0(round(as.numeric(HPDinterval(mcmc(res.quant.a$post[,2]))),7),collapse=' ~ '),paste0(round(as.numeric(HPDinterval(mcmc(res.quant.o$post[,2]))),7),collapse=' ~ '))
-summary.posterior$Gamma1.rhat <- round(c(res.quant.e$rhat[[1]][2,1],res.quant.a$rhat[[1]][2,1],res.quant.o$rhat[[1]][2,1]),3)
-summary.posterior$Gamma1.ess <- round(c(res.quant.e$ess[2],res.quant.a$ess[2],res.quant.o$ess[2]))
+
+# Generate Summary Table
+summary.posterior  <- data.frame(Origin=rep(c('Bir Kiseiba','Adrar Bous','Onjoungo Ravin de la Mouch'),each=2))
+summary.posterior$parameters <- rep(c('gamma0','gamma1'),3)
+summary.posterior$post.mean <- c(paste0(round(mean(res.quant.e$post[,1])),' BP'),
+				 round(mean(res.quant.e$post[,2]),7),
+				 paste0(round(mean(res.quant.a$post[,1])),' BP'),
+				 round(mean(res.quant.a$post[,2]),7),
+				 paste0(round(mean(res.quant.o$post[,1])),' BP'),
+				 round(mean(res.quant.o$post[,2]),7))
+summary.posterior$hpdi5 <- c(paste0(round(as.numeric(HPDinterval(mcmc(res.quant.e$post[,1])))),collapse=' ~ '),
+			     paste0(round(as.numeric(HPDinterval(mcmc(res.quant.e$post[,2]))),7),collapse=' ~ '),
+			     paste0(round(as.numeric(HPDinterval(mcmc(res.quant.a$post[,1])))),collapse=' ~ '),
+			     paste0(round(as.numeric(HPDinterval(mcmc(res.quant.a$post[,2]))),7),collapse=' ~ '),
+			     paste0(round(as.numeric(HPDinterval(mcmc(res.quant.o$post[,1])))),collapse=' ~ '),
+			     paste0(round(as.numeric(HPDinterval(mcmc(res.quant.o$post[,2]))),7),collapse=' ~ '))
+summary.posterior$rhat <- round(c(res.quant.e$rhat[[1]][1,1],
+				res.quant.e$rhat[[1]][2,1],
+				res.quant.a$rhat[[1]][1,1],
+				res.quant.a$rhat[[1]][2,1],
+				res.quant.o$rhat[[1]][1,1],
+				res.quant.o$rhat[[1]][2,1]),3)
+
+summary.posterior$ess <- round(c(res.quant.e$ess[1],
+				res.quant.e$ess[2],
+				res.quant.a$ess[1],
+				res.quant.a$ess[2],
+				res.quant.o$ess[1],
+				res.quant.o$ess[2]))
 
 write.csv(summary.posterior,file=here('tables','si','quantile_regression_posterior.csv'))
