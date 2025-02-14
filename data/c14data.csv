@@ -295,12 +295,12 @@ Fezzan_sud,FZZFDZ,EGYPT,OpenAir,26.5,13.28,H2937-24,NA,9340,85,CH,,,,,,,0,NA,,
 Foum_el_Alba,FOUMAL,MALI,OpenAir,20.58,-3.83,Gif5811,NA,7450,130,MLC_FW,,,,,,,1,NA,,
 Foum_el_Alba,FOUMAL,MALI,OpenAir,20.58,-3.83,UQ367,NA,7050,80,MLC_FW,,,,,,,1,NA,,
 Foum_el_Alba,FOUMAL,MALI,OpenAir,20.58,-3.83,Gif5810,NA,6990,130,MLC_FW,,,,,,,1,NA,,
-Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,GX23044,L18,8900,170,CH,,1,1,,,,1,1,di Lernia and Garcea forthcoming,mu[L18]>mu[L17]>mu[L16]>mu[L12]>mu[L7]>mu[L1]
-Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,GX23039,L1,8590,125,CH,,1,1,,,,1,6,di Lernia and Garcea forthcoming,mu[L18]>mu[L17]>mu[L16]>mu[L12]>mu[L7]>mu[L1]
-Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,xxx,L12,8560,160,CH,,1,1,,,,1,4,di Lernia and Garcea forthcoming,mu[L18]>mu[L17]>mu[L16]>mu[L12]>mu[L7]>mu[L1]
-Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,xx,L17,8555,125,CH,,1,1,,,,1,2,di Lernia and Garcea forthcoming,mu[L18]>mu[L17]>mu[L16]>mu[L12]>mu[L7]>mu[L1]
-Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,GX23042,L16,8540,120,CH,,1,1,,,,1,3,di Lernia and Garcea forthcoming,mu[L18]>mu[L17]>mu[L16]>mu[L12]>mu[L7]>mu[L1]
-Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,x,L7,8420,120,CH,,1,1,,,,1,5,di Lernia and Garcea forthcoming,mu[L18]>mu[L17]>mu[L16]>mu[L12]>mu[L7]>mu[L1]
+Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,GX23044,L18,8900,170,CH,,1,1,,,,1,1,di Lernia and Garcea forthcoming,mu[L18]>mu[L16]>mu[L1]
+Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,GX23039,L1,8590,125,CH,,1,1,,,,1,6,di Lernia and Garcea forthcoming,mu[L18]>mu[L16]>mu[L1]
+
+
+Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,GX23042,L16,8540,120,CH,,1,1,,,,1,3,di Lernia and Garcea forthcoming,mu[L18]>mu[L16]>mu[L1]
+
 Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,65Pi,NA,8070,100,CH,,1,1,,,,1,NA,di Lernia and Garcea forthcoming,
 Fozzigiaren,FZG,LIBYA,RS,24.83,10.42,x66,NA,7900,100,CH,,1,1,,,,1,NA,di Lernia and Garcea forthcoming,
 Gabrong,GBR,CHAD,RS,21.5,17.12,Hv3715,NA(a),8560,120,CH,,1,1,,,,1,NA,Gabriel,
