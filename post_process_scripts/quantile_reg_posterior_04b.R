@@ -1,6 +1,7 @@
 # Load Libraries,Data, and Results ----
 library(here)
 library(coda)
+options(scipen=9999)
 
 load(here('data','input_binom.RData'))
 load(here('results_images','quantreg','results_quantreg_a.RData'))

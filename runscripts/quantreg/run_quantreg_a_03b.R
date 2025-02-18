@@ -22,6 +22,7 @@ stopCluster(this_cluster)
 # Run Diagnostics ----
 (rhat.quant.a <- gelman.diag(chain_output.quant.a))
 if (any(rhat.quant.a[[1]][,1]>1.01)) {rhat.quant.a[[1]][which(rhat.quant.a[[1]][,1]>1.01),1]}
+# Rhat>1.01 for a theta112, can be neglected as 14C dates may not have a gaussian posterior
 
 # Extract Posterior and Save ----
 samples.quant.a  <- do.call(rbind,chain_output.quant.a)
