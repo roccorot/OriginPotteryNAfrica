@@ -1,14 +1,14 @@
-# R Scripts and Data for the manuscript 'XXXXX'
+# R Scripts and Data for the manuscript 'Bayesian analyses of radiocarbon dates suggest multiple origins of ceramic technology in Early Holocene Africa.'
 
-This repository contains R scripts and Data required to reproduce the analyses features in the following paper:
+This repository contains R scripts and Data required to reproduce the analysis featured in the following manuscript:
 
-Rotunno,R., Crema, E.R. (20XX). XXXXX.
+Rotunno,R., Crema, E.R. (2025). Bayesian analyses of radiocarbon dates suggest multiple origins of ceramic technology in Early Holocene Africa.
 
 The repository is organised into the following six main directories:
 
 - **data** ... Contains raw data and data preparation scripts.
 - **runscripts** ... Contains R scripts for executing all analyses.
-- **results_images** ... Contains R images files storing the output of all analyses.
+- **results_images** ... Contains R image files storing the output of all analyses.
 - **post_process_scripts** ... Contains R scripts for processing R image files to generate figures and tables.
 - **figures** ... Contains main and supplementary figures.
 - **tables** ... Contains main and supplementary tables.
@@ -120,6 +120,7 @@ loaded via a namespace (and not attached):
 ```
 ## Funding
 * Philip Leverhulme Prize (#PLP-2019–304 Awarded to: E.Crema)
+* EHSCAN-Exploring Early Holocene Saharan Cultural Adaptation and social Networks through socio-ecological inferential modelling. (Engineering and Physical Sciences Research Council (EPSRC) #EP/Y028430/1; Awarded to: E.Crema & R.Rotunno)
   
 
 
