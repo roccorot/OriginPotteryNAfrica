@@ -13,8 +13,6 @@ The repository is organised into the following six main directories:
 - **figures** ... Contains main and supplementary figures.
 - **tables** ... Contains main and supplementary tables.
 
-# Dataset
-
 # Bayesian Analyses
 
 Two sets of Bayesian analyses were carried out using presence data (quantile regression) and presence/absence data (binomial regression).Quantile regression analyses used the distance from a single putative origin as predictor of the observed radiocarbon dates, whilst the binomial model used the distance from one or more putative origin and the date associated with the sample as a predictor of the presence/absence of ceramic in each binned context. A total of three quantile regression models and seven binomial regression models were fitted. Origin point(s) used in the binomial models are shown in the table below:
@@ -59,7 +57,7 @@ Model | R Script | Requires | Generates | Description | Runtime |
 
 
 # Figures and Tables
-
+The table below shows the correspondence between figure numbers in the main and supplementary text and the files in this repository.
 
 | Filename | Figure/Table |
 | --- | --- |
@@ -78,9 +76,19 @@ Model | R Script | Requires | Generates | Description | Runtime |
 | `tables/main/quantile_regression_posterior.csv` | Table S1 |
 | `tables/main/binomial_posterior.csv` | Table S2 |
 
-# R Session Info
+
+# System Requirements
+
+## Hardware Requirement
+All analyses can be done on a standard desktop machine with enough RAM. A minimum of four threads are recommended to allow parallel runs of MCMC chains.
+
+## OS Requirement
+Analyses were executed on a Ubuntu 20.04.6 LTS running machine and tested on a MacOS 10.15 machine. There are no known OS-specific requirements - codes can be executed in any OS running R statistical computing language (v 4.4.x).
+
+## R packages dependencies
+
 ```
-ttached base packages:
+attached base packages:
 [1] parallel  stats     graphics  grDevices utils     datasets  methods  
 [8] base     
 
@@ -122,7 +130,8 @@ loaded via a namespace (and not attached):
 * Philip Leverhulme Prize (#PLP-2019–304 Awarded to: E.Crema)
 * EHSCAN-Exploring Early Holocene Saharan Cultural Adaptation and social Networks through socio-ecological inferential modelling. (Engineering and Physical Sciences Research Council (EPSRC) #EP/Y028430/1; Awarded to: E.Crema & R.Rotunno)
   
-
+# Licence
+The MIT License (MIT)
 
 
 
