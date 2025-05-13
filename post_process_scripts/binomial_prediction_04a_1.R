@@ -84,25 +84,25 @@ for(i in 1:length(time.slices))
 
 	#m1
 	post.m1 <- m1.res$post[sim.index,]
-	results[[i]]$m1 <- sapply(1:nsim,function(x,post,t,d){return(1/(1+exp(-(post[x,1] - post[x,2]*t - post[x,3]*d))))},post=post.m1,t=time.x,d=results[[i]]$dist.e.scaled) |> apply(1,mean)
+	results[[i]]$m1 <- sapply(1:nsim,function(x,post,t,d){return(1/(1+exp(-(post[x,1] - post[x,2]*t - post[x,3]*d + post[x,4]*d*t))))},post=post.m1,t=time.x,d=results[[i]]$dist.e.scaled) |> apply(1,mean)
 	#m2
 	post.m2 <- m2.res$post[sim.index,]
-	results[[i]]$m2 <- sapply(1:nsim,function(x,post,t,d){return(1/(1+exp(-(post[x,1] - post[x,2]*t - post[x,3]*d))))},post=post.m2,t=time.x,d=results[[i]]$dist.a.scaled) |> apply(1,mean)
+	results[[i]]$m2 <- sapply(1:nsim,function(x,post,t,d){return(1/(1+exp(-(post[x,1] - post[x,2]*t - post[x,3]*d + post[x,4]*d*t))))},post=post.m2,t=time.x,d=results[[i]]$dist.a.scaled) |> apply(1,mean)
 	#m3
 	post.m3 <- m3.res$post[sim.index,]
-	results[[i]]$m3 <- sapply(1:nsim,function(x,post,t,d){return(1/(1+exp(-(post[x,1] - post[x,2]*t - post[x,3]*d))))},post=post.m2,t=time.x,d=results[[i]]$dist.o.scaled) |> apply(1,mean)
+	results[[i]]$m3 <- sapply(1:nsim,function(x,post,t,d){return(1/(1+exp(-(post[x,1] - post[x,2]*t - post[x,3]*d + post[x,4]*d*t))))},post=post.m2,t=time.x,d=results[[i]]$dist.o.scaled) |> apply(1,mean)
 	#m4  
 	post.m4 <- m4.res$post[sim.index,]
-	results[[i]]$m4 <- sapply(1:nsim,function(x,post,t,d1,d2){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,3]*t - post[x,5]*d1)))),c(1/(1+exp(-(post[x,2] - post[x,4]*t - post[x,6]*d2))))))},post=post.m4,t=time.x,d1=results[[i]]$dist.e.scaled,d2=results[[i]]$dist.a.scaled) |> apply(1,mean)
+	results[[i]]$m4 <- sapply(1:nsim,function(x,post,t,d1,d2){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,3]*t - post[x,5]*d1 + post[x,7]*d1*t)))),c(1/(1+exp(-(post[x,2] - post[x,4]*t - post[x,6]*d2 + post[x,8]*d2*t))))))},post=post.m4,t=time.x,d1=results[[i]]$dist.e.scaled,d2=results[[i]]$dist.a.scaled) |> apply(1,mean)
 	#m5  
 	post.m5 <- m5.res$post[sim.index,]
-	results[[i]]$m5 <- sapply(1:nsim,function(x,post,t,d1,d2){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,3]*t - post[x,5]*d1)))),c(1/(1+exp(-(post[x,2] - post[x,4]*t - post[x,6]*d2))))))},post=post.m5,t=time.x,d1=results[[i]]$dist.e.scaled,d2=results[[i]]$dist.o.scaled) |> apply(1,mean)
+	results[[i]]$m5 <- sapply(1:nsim,function(x,post,t,d1,d2){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,3]*t - post[x,5]*d1 + post[x,7]*d1*t)))),c(1/(1+exp(-(post[x,2] - post[x,4]*t - post[x,6]*d2 + post[x,8]*d2*t))))))},post=post.m5,t=time.x,d1=results[[i]]$dist.e.scaled,d2=results[[i]]$dist.o.scaled) |> apply(1,mean)
 	#m6  
 	post.m6 <- m6.res$post[sim.index,]
-	results[[i]]$m6 <- sapply(1:nsim,function(x,post,t,d1,d2){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,3]*t - post[x,5]*d1)))),c(1/(1+exp(-(post[x,2] - post[x,4]*t - post[x,6]*d2))))))},post=post.m6,t=time.x,d1=results[[i]]$dist.a.scaled,d2=results[[i]]$dist.o.scaled) |> apply(1,mean)
+	results[[i]]$m6 <- sapply(1:nsim,function(x,post,t,d1,d2){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,3]*t - post[x,5]*d1 + post[x,7]*d1*t)))),c(1/(1+exp(-(post[x,2] - post[x,4]*t - post[x,6]*d2 + post[x,8]*d2*t))))))},post=post.m6,t=time.x,d1=results[[i]]$dist.a.scaled,d2=results[[i]]$dist.o.scaled) |> apply(1,mean)
 	#m7  
 	post.m7 <- m7.res$post[sim.index,]
-	results[[i]]$m7 <- sapply(1:nsim,function(x,post,t,d1,d2,d3){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,4]*t - post[x,7]*d1)))),c(1/(1+exp(-(post[x,2] - post[x,5]*t - post[x,8]*d2)))),c(1/(1+exp(-(post[x,3] - post[x,6]*t - post[x,9]*d3))))))},post=post.m7,t=time.x,d1=results[[i]]$dist.e.scaled,d2=results[[i]]$dist.a.scaled,d3=results[[i]]$dist.o.scaled) |> apply(1,mean)
+	results[[i]]$m7 <- sapply(1:nsim,function(x,post,t,d1,d2,d3){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,4]*t - post[x,7]*d1 + post[x,10]*d1*t)))),c(1/(1+exp(-(post[x,2] - post[x,5]*t - post[x,8]*d2 + post[x,11]*d2*t)))),c(1/(1+exp(-(post[x,3] - post[x,6]*t - post[x,9]*d3 + post[x,12]*d3*t))))))},post=post.m7,t=time.x,d1=results[[i]]$dist.e.scaled,d2=results[[i]]$dist.a.scaled,d3=results[[i]]$dist.o.scaled) |> apply(1,mean)
 }
 
 

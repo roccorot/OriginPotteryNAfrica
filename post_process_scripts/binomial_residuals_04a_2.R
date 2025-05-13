@@ -23,9 +23,9 @@ post.m7 <- m7.res$post[index,]
 post.m5 <- m5.res$post[index,]
 
 # Make predictions and compute residuals ----
-predictions.m5 <- sapply(1:nsim,function(x,post,t,d1,d2){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,3]*t - post[x,5]*d1)))),c(1/(1+exp(-(post[x,2] - post[x,4]*t - post[x,6]*d2))))))},post=post.m5,t=d$theta.scaled,d1=d$dist.e.scaled,d2=d$dist.o.scaled)
+predictions.m5 <- sapply(1:nsim,function(x,post,t,d1,d2){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,3]*t - post[x,5]*d1 + post[x,7]*d1*t)))),c(1/(1+exp(-(post[x,2] - post[x,4]*t - post[x,6]*d2 + post[x,8]*d2*t))))))},post=post.m5,t=d$theta.scaled,d1=d$dist.e.scaled,d2=d$dist.o.scaled)
 
-predictions.m7 <- sapply(1:nsim,function(x,post,t,d1,d2,d3){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,4]*t - post[x,7]*d1)))),c(1/(1+exp(-(post[x,2] - post[x,5]*t - post[x,8]*d2)))),c(1/(1+exp(-(post[x,3] - post[x,6]*t - post[x,9]*d3))))))},post=post.m7,t=d$theta.scaled,d1=d$dist.e.scaled,d2=d$dist.a.scaled,d3=d$dist.o.scaled)
+predictions.m7 <- sapply(1:nsim,function(x,post,t,d1,d2,d3){return(pmax(c(1/(1+exp(-(post[x,1] - post[x,4]*t - post[x,7]*d1 + post[x,10]*d1*t)))),c(1/(1+exp(-(post[x,2] - post[x,5]*t - post[x,8]*d2 + post[x,11]*d2*t)))),c(1/(1+exp(-(post[x,3] - post[x,6]*t - post[x,9]*d3 + post[x,12]*d3*t))))))},post=post.m7,t=d$theta.scaled,d1=d$dist.e.scaled,d2=d$dist.a.scaled,d3=d$dist.o.scaled)
 
 
 d$residuals.m7  <- d$pottery_bin - apply(predictions.m5,1,median)

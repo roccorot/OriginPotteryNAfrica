@@ -54,7 +54,7 @@ for (i in 1:7)
 			{
 				for (k in 1:nrow(tmp))
 				{
-				tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[1]-x[2]*y-x[3]*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
+				tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[1]-x[2]*y-x[3]*z + x[4]*y*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
 				}
 
 			}
@@ -64,7 +64,7 @@ for (i in 1:7)
 				{
 					for (k in 1:nrow(tmp))
 					{
-						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[1]-x[3]*y-x[5]*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
+						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[1]-x[3]*y-x[5]*z+x[7]*y*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
 					}
 				}
 
@@ -72,7 +72,7 @@ for (i in 1:7)
 				{
 					for (k in 1:nrow(tmp))
 					{
-						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[2]-x[4]*y-x[6]*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
+						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[2]-x[4]*y-x[6]*z+x[8]*y*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
 					}
 				}
 			}
@@ -83,7 +83,7 @@ for (i in 1:7)
 				{
 					for (k in 1:nrow(tmp))
 					{
-						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[1]-x[4]*y-x[7]*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
+						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[1]-x[4]*y-x[7]*z+x[10]*y*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
 					}
 
 				}
@@ -92,7 +92,7 @@ for (i in 1:7)
 				{
 					for (k in 1:nrow(tmp))
 					{
-						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[2]-x[5]*y-x[8]*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
+						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[2]-x[5]*y-x[8]*z+x[11]*y*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
 					}
 
 				}
@@ -101,7 +101,7 @@ for (i in 1:7)
 				{
 					for (k in 1:nrow(tmp))
 					{
-						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[3]-x[6]*y-x[9]*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
+						tmp$p[k] <- apply(posts[[i]],1,function(x,y,z){return(logistic(x[3]-x[6]*y-x[9]*z+x[12]*y*z))},y=tmp$y[k],z=tmp$x[k]) |> median()
 					}
 				}
 			}
@@ -129,40 +129,40 @@ combined + plot_layout(guides='collect',ncol=3)
 dev.off()
 
 # Posterior Summaries ----
-post.summary <- data.frame(models = rep(paste0('m',1:7),c(3,3,3,6,6,6,9)))
-post.summary$param <- c('beta.e.0','beta.e.time','beta.e.distance',
-			'beta.a.0','beta.a.time','beta.a.distance',
-			'beta.o.0','beta.o.time','beta.o.time',
-			'beta.e.0','beta.e.time','beta.e.distance','beta.a.0','beta.a.time','beta.a.distance',
-			'beta.e.0','beta.e.time','beta.e.distance','beta.o.0','beta.o.time','beta.o.distance',
-			'beta.a.0','beta.a.time','beta.a.distance','beta.o.0','beta.o.time','beta.o.distance',
-			'beta.e.0','beta.e.time','beta.e.distance','beta.a.0','beta.a.time','beta.a.distance','beta.o.0','beta.o.time','beta.o.distance')
+post.summary <- data.frame(models = rep(paste0('m',1:7),c(4,4,4,8,8,8,12)))
+post.summary$param <- c('beta.e.0','beta.e.time','beta.e.distance','beta.e.interaction',
+			'beta.a.0','beta.a.time','beta.a.distance','beta.a.interaction',
+			'beta.o.0','beta.o.time','beta.o.time','beta.o.interaction',
+			'beta.e.0','beta.e.time','beta.e.distance','beta.e.interaction','beta.a.0','beta.a.time','beta.a.distance','beta.a.interaction',
+			'beta.e.0','beta.e.time','beta.e.distance','beta.e.interaction','beta.o.0','beta.o.time','beta.o.distance','beta.o.interaction',
+			'beta.a.0','beta.a.time','beta.a.distance','beta.a.interaction','beta.o.0','beta.o.time','beta.o.distance','beta.o.interaction',
+			'beta.e.0','beta.e.time','beta.e.distance','beta.e.interaction','beta.a.0','beta.a.time','beta.a.distance','beta.a.interaction','beta.o.0','beta.o.time','beta.o.distance','beta.o.interaction')
 
 posts <- cbind(m1.res$post,
 	       m2.res$post,
 	       m3.res$post,
-	       m4.res$post[,c(1,3,5,2,4,6)],
-	       m5.res$post[,c(1,3,5,2,4,6)],
-	       m6.res$post[,c(1,3,5,2,4,6)],
-	       m7.res$post[,c(1,4,7,2,5,8,3,6,9)])
-rhats <- c(m1.res$rhat[[1]][1:3,1],
-	   m2.res$rhat[[1]][1:3,1],
-	   m3.res$rhat[[1]][1:3,1],
-	   m4.res$rhat[[1]][c(1,3,5,2,4,6),1],
-	   m5.res$rhat[[1]][c(1,3,5,2,4,6),1],
-	   m6.res$rhat[[1]][c(1,3,5,2,4,6),1],
-	   m6.res$rhat[[1]][c(1,4,7,2,5,8,3,6,9),1])
+	       m4.res$post[,c(1,3,5,7,2,4,6,8)],
+	       m5.res$post[,c(1,3,5,7,2,4,6,8)],
+	       m6.res$post[,c(1,3,5,7,2,4,6,8)],
+	       m7.res$post[,c(1,4,7,10,2,5,8,11,3,6,9,12)])
+rhats <- c(m1.res$rhat[[1]][1:4,1],
+	   m2.res$rhat[[1]][1:4,1],
+	   m3.res$rhat[[1]][1:4,1],
+	   m4.res$rhat[[1]][c(1,3,5,7,2,4,6,8),1],
+	   m5.res$rhat[[1]][c(1,3,5,7,2,4,6,8),1],
+	   m6.res$rhat[[1]][c(1,3,5,7,2,4,6,8),1],
+	   m6.res$rhat[[1]][c(1,4,7,10,2,5,8,11,3,6,9,12),1])
 
 ess <- c(m1.res$ess[1:3],
 	  m2.res$ess[1:3],
 	  m3.res$ess[1:3],
-	  m4.res$ess[c(1,3,5,2,4,6)],
-	  m5.res$ess[c(1,3,5,2,4,6)],
-	  m6.res$ess[c(1,3,5,2,4,6)],
-	  m7.res$ess[c(1,4,7,2,5,8,3,6,9)])
+	  m4.res$ess[c(1,3,5,7,2,4,6,8)],
+	  m5.res$ess[c(1,3,5,7,2,4,6,8)],
+	  m6.res$ess[c(1,3,5,7,2,4,6,8)],
+	  m7.res$ess[c(1,4,7,10,2,5,8,11,3,6,9,12)])
 
 post.summary$ess <- post.summary$rhat  <- post.summary$hpdi  <- post.summary$mean <- NA
-param.numbers <- c(3,3,3,6,6,6,9)
+param.numbers <- c(4,4,4,8,8,8,12)
 model.numbers <- 1:7
 current.index <- 1
 
