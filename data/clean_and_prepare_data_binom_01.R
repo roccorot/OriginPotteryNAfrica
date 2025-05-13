@@ -20,8 +20,12 @@ d  <- left_join(d,bin.table)
 d$DateID <- 1:nrow(d)
 dcal <- dcal[thinned]
 theta <- d$theta
-# Handle Stratigraphic Relationship
-site_subset <- select(d,SiteID,STRATIGRAPHY) |> unique() |> subset(STRATIGRAPHY!='')
+# Handle Stratigraphic Relationship and derive order of dates (theta) where applicable
+# the field 'STRATIGRAPHY' defines the stratigraphic relationshup between dates of different levels. For example for site 'AMHB' we have
+# 'mu[LevelB]>mu[LevelC]>mu[LevelE]', indicating that samples from LevelB are older than those of LevelC, which in turn are older than LevelE.
+# the for loop below recovers this information, and after matching to those of field 'Layer.SU.UNIT.LOCUS', it generates conditional statements on specific dates (theta) that are then fed in to the nimble model as constraints.
+
+site_subset <- dplyr::select(d,SiteID,STRATIGRAPHY) |> unique() |> subset(STRATIGRAPHY!='')
 relationships <- numeric()
 
 for (i in 1:nrow(site_subset))
@@ -53,7 +57,7 @@ for (i in 1:nrow(site_subset))
 	}
 
 }
-
+# loop through the conditional statements and check whether init values (normally the median) meet the constraints. If not randomly sample values untill the requirements are met
 check  <- unlist(sapply(relationships,FUN=function(x){eval(parse(text=x))}))
 
  while(!all(check))
