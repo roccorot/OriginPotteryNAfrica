@@ -243,7 +243,7 @@ pdf(here('figures','si','pred_m4b.pdf'),width=7.25,height=4.2)
 combined.m4 + plot_layout(guides = "collect",ncol=3)
 dev.off()
 
-pdf(here('figures','main','pred_m5b.pdf'),width=7.25,height=4.2)
+pdf(here('figures','si','pred_m5b.pdf'),width=7.25,height=4.2)
 combined.m5 + plot_layout(guides = "collect",ncol=3)
 dev.off()
 
