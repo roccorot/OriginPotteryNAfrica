@@ -153,9 +153,9 @@ rhats <- c(m1.res$rhat[[1]][1:4,1],
 	   m6.res$rhat[[1]][c(1,3,5,7,2,4,6,8),1],
 	   m6.res$rhat[[1]][c(1,4,7,10,2,5,8,11,3,6,9,12),1])
 
-ess <- c(m1.res$ess[1:3],
-	  m2.res$ess[1:3],
-	  m3.res$ess[1:3],
+ess <- c(m1.res$ess[1:4],
+	  m2.res$ess[1:4],
+	  m3.res$ess[1:4],
 	  m4.res$ess[c(1,3,5,7,2,4,6,8)],
 	  m5.res$ess[c(1,3,5,7,2,4,6,8)],
 	  m6.res$ess[c(1,3,5,7,2,4,6,8)],
