@@ -39,7 +39,7 @@ combinations <- cbind(c(T,F,F,T,T,F,T),c(F,T,F,T,F,T,T),c(F,F,T,F,T,T,T))
 colnames(combinations) <- c('e','a','o')
 rownames(combinations) <- paste0('m',1:7)
 model.names <- paste0('m',1:7)
-origins <- c('Bir Kiseiba','Adrar Bous','Onjoungo Raven de la Mouch')
+origins <- c('Bir Kiseiba','Adrar Bous','Ounjougou Ravin de la Mouche')
 model.slots <- vector('list',length=7)
 for(i in 1:7){model.slots[[i]] <- vector('list',length=3)}
 
