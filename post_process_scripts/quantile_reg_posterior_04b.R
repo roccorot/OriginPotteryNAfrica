@@ -23,7 +23,7 @@ hpdi.e <- apply(mat.e,1,function(x){as.numeric(HPDinterval(mcmc(x)))})
 # Generate posterior figure on data ----
 pdf(here('figures','si','quantile_regression.pdf'),height=8,width=7)
 par(mfrow=c(3,1),mar=c(5,4,2,1),lend=2)
-plot(d$dist.o/1000,d$medcal,ylim=c(12000,6000),pch=20,col=ifelse(d$pottery_bin==0,'lightgrey','black'),xlab='Distance from Ounjougo Ravin de la Mouch (km)',ylab='Median Calibrated BP',xlim=c(0,4000))
+plot(d$dist.o/1000,d$medcal,ylim=c(12000,6000),pch=20,col=ifelse(d$pottery_bin==0,'lightgrey','black'),xlab='Distance from Ounjougou Ravin de la Mouche (km)',ylab='Median Calibrated BP',xlim=c(0,4000))
 polygon(c(dd,rev(dd)),c(hpdi.o[1,],rev(hpdi.o[2,])),border=NA,col=adjustcolor('indianred',0.3))
 lines(dd,mean.o,lwd=1.5,col='indianred')
 plot(d$dist.a/1000,d$medcal,ylim=c(12000,6000),pch=20,col=ifelse(d$pottery_bin==0,'lightgrey','black'),xlab='Distance from Adrar Bous 10 (km)',ylab='Median Calibrated BP',xlim=c(0,4000))
@@ -37,7 +37,7 @@ dev.off()
 
 
 # Generate Summary Table
-summary.posterior  <- data.frame(Origin=rep(c('Bir Kiseiba','Adrar Bous','Onjoungo Ravin de la Mouch'),each=2))
+summary.posterior  <- data.frame(Origin=rep(c('Bir Kiseiba','Adrar Bous','Ounjougou Ravin de la Mouche'),each=2))
 summary.posterior$parameters <- rep(c('gamma0','gamma1'),3)
 summary.posterior$post.mean <- c(paste0(round(mean(res.quant.e$post[,1])),' BP'),
 				 round(mean(res.quant.e$post[,2]),7),
