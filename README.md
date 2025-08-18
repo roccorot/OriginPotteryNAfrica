@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/840292399.svg)](https://doi.org/10.5281/zenodo.16895186)
 # R Scripts and Data for the manuscript 'Bayesian analyses of radiocarbon dates suggest multiple origins of ceramic technology in Early Holocene Africa.'
 
 This repository contains R scripts and Data required to reproduce the analysis featured in the following manuscript:
