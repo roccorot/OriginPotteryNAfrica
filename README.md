@@ -21,10 +21,10 @@ Two sets of Bayesian analyses were carried out using presence data (quantile reg
 |-------|---------------------------------------------|
 | m1    | Bir Kiseiba                                 |
 | m2    | Adrar Bous 10                               |
-| m3    | Ounjougou Ravin de la Mouch                 |
+| m3    | Ounjougou Ravin de la Mouche                 |
 | m4    | Bir Kiseiba + Adrar Bous 10                 |
-| m5    | Bir Kiseiba + Ounjougou Ravin de la Mouch   |
-| m6    | Adrar Bous 10 + Ounjougou Ravin de la Mouch |
+| m5    | Bir Kiseiba + Ounjougou Ravin de la Mouche   |
+| m6    | Adrar Bous 10 + Ounjougou Ravin de la Mouche |
 
 
 ## R Script Pipeline
