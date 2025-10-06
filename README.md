@@ -3,7 +3,7 @@
 
 This repository contains R scripts and Data required to reproduce the analysis featured in the following manuscript:
 
-Rotunno,R., Crema, E.R. (2025). Bayesian analyses of radiocarbon dates suggest multiple origins of ceramic technology in Early Holocene Africa.
+Rotunno,Rotunno, R., Crema, E. R. (2025). [Bayesian analyses of radiocarbon dates suggest multiple origins of ceramic technology in Early Holocene Africa](https://doi.org/10.1038/s41467-025-63887-0). _Nature Communications_ 16, 8819. DOI:10.1038/s41467-025-63887-0
 
 The repository is organised into the following six main directories:
 
